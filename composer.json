@@ -10,7 +10,8 @@
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
-        "timacdonald/json-api":"^v1.0.0-beta.4"
+        "spatie/laravel-query-builder": "^6.2",
+        "timacdonald/json-api": "^v1.0.0-beta.4"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

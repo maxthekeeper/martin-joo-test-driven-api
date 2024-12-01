@@ -8,8 +8,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\v1\UpsertDepartmentRequest;
 use App\Http\Resources\Api\v1\DepartmentResource;
 use App\Models\Department;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
-use Illuminate\Http\Response;
+use Symfony\Component\HttpFoundation\Response;
 
 class DepartmentController extends Controller
 {
@@ -22,9 +23,11 @@ class DepartmentController extends Controller
         return DepartmentResource::collection(Department::all());
     }
 
-    public function store(UpsertDepartmentRequest $request): DepartmentResource
+    public function store(UpsertDepartmentRequest $request): JsonResponse
     {
-        return DepartmentResource::make($this->upsert($request, new Department()));
+        return DepartmentResource::make($this->upsert($request, new Department()))
+            ->response()
+            ->setStatusCode(Response::HTTP_CREATED);
     }
 
     public function show(Department $department): DepartmentResource
